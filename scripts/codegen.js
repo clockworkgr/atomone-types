@@ -5,9 +5,9 @@ const { writeFileSync } = require("fs");
 const telescope = require("@cosmology/telescope").default;
 
 const outPath = join(__dirname, "/../src");
-const aminoExceptions = 
+
 telescope({
-  protoDirs: ["protos/cosmos-sdk/proto", "protos/cosmos-sdk/third_party/proto", "protos/atomone/proto"],
+  protoDirs: ["protos/cosmos-sdk/proto", "protos/third_party", "protos/atomone/proto"],
   outPath: outPath,
   options: {
     logLevel: 0,
@@ -35,8 +35,16 @@ telescope({
       // Those are causing trouble in CosmJS testing (https://github.com/cosmology-tech/telescope/issues/489)
       addTypeUrlToDecoders: false,
       excluded: {
-        packages: [],
+        packages: ["cosmos.gov.v1beta1", "cosmos.gov.v1beta1"],
         protos: [
+          "cosmos/gov/v1/genesis.proto",
+          "cosmos/gov/v1/gov.proto",
+          "cosmos/gov/v1/query.proto",
+          "cosmos/gov/v1/tx.proto",
+          "cosmos/gov/v1beta1/genesis.proto",
+          "cosmos/gov/v1beta1/gov.proto",
+          "cosmos/gov/v1beta1/query.proto",
+          "cosmos/gov/v1beta1/tx.proto",
           "cosmos/autocli/v1/options.proto",
           "cosmos/autocli/v1/query.proto",
           "cosmos/authz/v1beta1/event.proto",
@@ -94,7 +102,6 @@ telescope({
     },
     aminoEncoding: {
       enabled: true,
-      exceptions: aminoExceptions,
       useLegacyInlineEncoding: false,
     },
     tsDisable: {

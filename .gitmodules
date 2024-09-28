@@ -1,0 +1,6 @@
+[submodule "protos/cosmos-sdk"]
+	path = protos/cosmos-sdk
+	url = https://github.com/cosmos/cosmos-sdk
+[submodule "protos/atomone"]
+	path = protos/atomone
+	url = https://github.com/atomone-hub/atomone
